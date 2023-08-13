@@ -1,4 +1,4 @@
-export default class IUser {
+export default interface IUser {
     name?: string | null;
     email?: string | null;
     age?: string | null;
