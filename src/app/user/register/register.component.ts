@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../srevices/auth.service";
 import {RegisterValidators} from "../validators/register-validators";
+import {EmailTaken} from "../validators/email-taken";
 
 
 @Component({
@@ -11,7 +12,9 @@ import {RegisterValidators} from "../validators/register-validators";
 })
 export class RegisterComponent {
 
-    constructor(private auth: AuthService) {
+    constructor(private auth: AuthService,
+                private emailTaken: EmailTaken
+    ) {
     }
 
     inSubmission = false
@@ -21,7 +24,8 @@ export class RegisterComponent {
     ])
     email = new FormControl('', [
         Validators.email,
-        Validators.required]
+        Validators.required],
+      [this.emailTaken.validate]
     )
     age = new FormControl('', [
         Validators.required,
