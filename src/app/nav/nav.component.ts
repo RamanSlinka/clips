@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ModalService} from "../srevices/modal.service";
 import {AuthService} from "../srevices/auth.service";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +14,9 @@ export class NavComponent {
 
   constructor(public modal: ModalService,
               public auth: AuthService,
-              private afAuth: AngularFireAuth) {
+              private afAuth: AngularFireAuth,
+              private router: Router
+              ) {
   }
 
   public openModal($event: Event) {
