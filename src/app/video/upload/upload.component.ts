@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-upload',
@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class UploadComponent {
 
+  public isDragover = false
+  public file: File | null = null
+  public nextStep = false
+
+  storeFile($event: Event) {
+    this.isDragover = false
+    this.file = ($event as DragEvent).dataTransfer?.files.item(0) ?? null
+
+    if (!this.file || this.file.type !== 'video/mp4') {
+      return
+    }
+    this.nextStep = true
+  }
 }
