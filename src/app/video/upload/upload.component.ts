@@ -14,6 +14,13 @@ export class UploadComponent {
   public file: File | null = null
   public nextStep = false
 
+  public showAlert = false
+  public alertColor = 'blue'
+  public alertMessage = 'Please wait! Your clip is being uploaded.'
+  public inSubmission = false
+
+  public percentage = 0
+
 
   title = new FormControl('', [
     Validators.required,
@@ -41,11 +48,19 @@ export class UploadComponent {
   }
 
   uploadFile() {
-    const clipFileName = uuid()
-    const clipPath = `clips/${clipFileName}.mp4`
+    this.showAlert = true;
+    this.alertColor = 'blue';
+    this.alertMessage = 'Please wait! Your clip is being uploaded.';
+    this.inSubmission = true
 
-    this.storage.upload(clipPath, this.file)
+    const clipFileName = uuid();
+    const clipPath = `clips/${clipFileName}.mp4`;
 
-    console.log('file uploaded')
+   const task =  this.storage.upload(clipPath, this.file);
+   task.percentageChanges().subscribe(progress => {
+     this.percentage = progress as number / 100
+   })
+
+    console.log('file uploaded');
   }
 }
