@@ -43,7 +43,7 @@ export class UploadComponent implements OnDestroy{
   constructor(private storage: AngularFireStorage,
               private auth: AngularFireAuth,
               private clipsService: ClipService,
-              private router: Router
+              private router: Router,
   ) {
     auth.user.subscribe(user => this.user = user)
   }
