@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,  OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ClipService} from "../../srevices/clip.service";
 import IClip from "../../models/clip.model";
@@ -12,7 +12,8 @@ import {ModalService} from "../../srevices/modal.service";
 export class ManageComponent implements OnInit {
 
   public videoOrder = '1';
-  public clips: IClip[] = []
+  public clips: IClip[] = [];
+  public activeClip: IClip | null = null;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -48,6 +49,8 @@ export class ManageComponent implements OnInit {
 
   openModal($event: Event, clip: IClip) {
     $event.preventDefault()
+
+    this.activeClip = clip;
 
     this.modal.toggleModal('editClip')
   }

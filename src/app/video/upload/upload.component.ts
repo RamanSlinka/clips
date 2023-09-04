@@ -35,7 +35,6 @@ export class UploadComponent implements OnDestroy{
     Validators.required,
     Validators.minLength(3)
   ])
-
   uploadForm = new FormGroup({
     title: this.title
   })
