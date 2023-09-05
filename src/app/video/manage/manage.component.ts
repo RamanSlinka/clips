@@ -1,8 +1,9 @@
-import {Component,  OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ClipService} from "../../srevices/clip.service";
 import IClip from "../../models/clip.model";
 import {ModalService} from "../../srevices/modal.service";
+import {update} from "@angular/fire/database";
 
 @Component({
   selector: 'app-manage',
@@ -19,7 +20,8 @@ export class ManageComponent implements OnInit {
               private route: ActivatedRoute,
               private clipService: ClipService,
               private modal: ModalService
-  ) {  }
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
@@ -54,4 +56,12 @@ export class ManageComponent implements OnInit {
 
     this.modal.toggleModal('editClip')
   }
+
+  update($event: IClip) {
+    this.clips.forEach((element, index) => {
+      if (element.docID == $event.docID) {
+        this.clips[index].title = $event.title
+      }
+    })
+  };
 }
