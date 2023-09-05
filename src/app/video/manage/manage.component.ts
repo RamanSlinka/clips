@@ -4,6 +4,7 @@ import {ClipService} from "../../srevices/clip.service";
 import IClip from "../../models/clip.model";
 import {ModalService} from "../../srevices/modal.service";
 import {update} from "@angular/fire/database";
+import {elementAt} from "rxjs";
 
 @Component({
   selector: 'app-manage',
@@ -64,4 +65,16 @@ export class ManageComponent implements OnInit {
       }
     })
   };
+
+  deleteClip($event: Event, clip: IClip) {
+    $event.preventDefault()
+
+    this.clipService.deleteClip(clip)
+
+    this.clips.forEach((element, index) => {
+      if(element.docID == clip.docID) {
+        this.clips.splice(index, 1)
+      }
+    })
+  }
 }
