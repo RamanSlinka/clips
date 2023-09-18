@@ -3,7 +3,8 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ClipService} from "../../srevices/clip.service";
 import IClip from "../../models/clip.model";
 import {ModalService} from "../../srevices/modal.service";
-import {BehaviorSubject} from "rxjs";
+import {update} from "@angular/fire/database";
+import {BehaviorSubject, elementAt} from "rxjs";
 
 @Component({
   selector: 'app-manage',
@@ -30,6 +31,7 @@ export class ManageComponent implements OnInit {
       this.videoOrder = params['sort'] === '2' ? params['sort'] : '1'
       this.sort$.next(this.videoOrder)
     })
+
     this.clipService.getUserClips(this.sort$).subscribe(docs => {
       this.clips = []
 
@@ -74,7 +76,7 @@ export class ManageComponent implements OnInit {
     this.clipService.deleteClip(clip)
 
     this.clips.forEach((element, index) => {
-      if (element.docID == clip.docID) {
+      if(element.docID == clip.docID) {
         this.clips.splice(index, 1)
       }
     })

@@ -7,7 +7,7 @@ import {
 } from "@angular/fire/compat/firestore";
 import IClip from "../models/clip.model";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
-import {BehaviorSubject, combineLatest, map, of, switchMap} from "rxjs";
+import {map, of, switchMap} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Injectable({
@@ -35,7 +35,8 @@ export class ClipService {
       sort$
     ]).pipe(
       switchMap(values => {
-        const [user, sort] = values
+        const  [user, sort] = values;
+
         if (!user) {
           return of([])
         }
@@ -44,7 +45,7 @@ export class ClipService {
           'uid', '==', user.uid
         ).orderBy(
           'timestamp',
-          sort === '1' ?  'desc' : 'asc',
+          sort === '1' ? 'desc' : 'asc'
         )
 
         return query.get()
