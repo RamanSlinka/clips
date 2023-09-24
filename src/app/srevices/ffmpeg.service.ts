@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
-// import { createFFmpeg } from '@ffmpeg/ffmpeg';
 import {createFFmpeg, fetchFile} from "@ffmpeg/ffmpeg";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FfmpegService {
-
+  public isRunning = false
   public isReady = false
   private ffmpeg
 
@@ -26,11 +25,12 @@ export class FfmpegService {
 
 
   async getScreenshots(file: File) {
+    this.isRunning = true
     const data = await fetchFile(file)
 
     this.ffmpeg.FS('writeFile', file.name, data)
 
-    const seconds = [1,2,3]
+    const seconds = [1, 2, 3]
     const commands: string[] = []
     seconds.forEach(second => {
       commands.push(
@@ -48,10 +48,10 @@ export class FfmpegService {
 
     await this.ffmpeg.run(
       ...commands
-  )
+    )
     const screenshots: string[] = []
     seconds.forEach(second => {
-      const screenshotFile = this.ffmpeg.FS('readFile',  `output_0${second}.png`)
+      const screenshotFile = this.ffmpeg.FS('readFile', `output_0${second}.png`)
       const screenshotBlob = new Blob(
         [screenshotFile.buffer], {
           type: 'image/png'
@@ -61,6 +61,7 @@ export class FfmpegService {
       const screenshotURL = URL.createObjectURL(screenshotBlob)
       screenshots.push(screenshotURL)
     })
-  return screenshots
+    this.isRunning = false
+    return screenshots
   }
 }
