@@ -8,6 +8,7 @@ import {SharedModule} from "../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { EditComponent } from './edit/edit.component';
 import { SafeURLPipe } from './pipes/safe-url.pipe';
+import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
 
 
 @NgModule({
@@ -16,6 +17,10 @@ import { SafeURLPipe } from './pipes/safe-url.pipe';
     UploadComponent,
     EditComponent,
     SafeURLPipe,
+    FbTimestampPipe,
+  ],
+  exports: [
+    FbTimestampPipe
   ],
   imports: [
     CommonModule,
