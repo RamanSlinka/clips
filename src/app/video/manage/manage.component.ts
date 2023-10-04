@@ -75,9 +75,21 @@ export class ManageComponent implements OnInit {
     this.clipService.deleteClip(clip)
 
     this.clips.forEach((element, index) => {
-      if(element.docID == clip.docID) {
+      if (element.docID == clip.docID) {
         this.clips.splice(index, 1)
       }
     })
+  }
+
+  async copyToClipboard($event: MouseEvent, docID: string | undefined) {
+    $event.preventDefault()
+
+    if (!docID) {
+      return
+    }
+    const url = `${location.origin}/clip/${docID}`
+    await navigator.clipboard.writeText(url)
+
+    alert('Link Copied!')
   }
 }
