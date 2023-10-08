@@ -1,6 +1,6 @@
 # Clips 
 
-You can look at this mini project here: [BurgersLanding  ---->  LINK  ](https://ramanslinka.github.io/clips/) version 1.0.
+You can look at this project here: [BurgersLanding  ---->  LINK  ](https://ramanslinka.github.io/clips/) version 1.0.
 
 ### This APP was created in Angular and TypeScript.
 There are: the latest features in Angular: Routing, Directives, Pipes, Services, Ahead of time Compilation + much more.
@@ -15,7 +15,7 @@ Used TailwindCSS in this Angular application.
 ![1](https://github.com/RamanSlinka/clips/assets/80674763/c26c7685-8aa5-4025-9d49-96e045a50131)
 
 You can log in to test account :
-#### email: test@test.com
+#### email: test@test.com  
 #### password: aaaaaaA1
 
 ![2](https://github.com/RamanSlinka/clips/assets/80674763/39d2f465-3440-4e02-8ab5-66c9bc2a34c3)
