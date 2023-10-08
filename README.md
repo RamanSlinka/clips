@@ -14,7 +14,10 @@ Used TailwindCSS in this Angular application.
 
 ![1](https://github.com/RamanSlinka/clips/assets/80674763/c26c7685-8aa5-4025-9d49-96e045a50131)
 
-You can log in to your account:
+You can log in to test account :
+login: test@test.com
+password: aaaaaaA1
+
 ![2](https://github.com/RamanSlinka/clips/assets/80674763/39d2f465-3440-4e02-8ab5-66c9bc2a34c3)
 
 Or create a new account if you don't already have one:
